@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Enhancer Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        }
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #4b6cb7, #182848);
+        }
+        .prompt-box {
+            min-height: 150px;
+        }
+        .enhancement-level-btn.active {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .enhancement-style-btn.active {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .enhancement-format-btn.active {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .dark .dark\:bg-gray-800 {
+            background-color: #1e293b;
+        }
+        .dark .dark\:bg-gray-700 {
+            background-color: #334155;
+        }
+        .dark .dark\:text-white {
+            color: #f8fafc;
+        }
+        .dark .dark\:border-gray-600 {
+            border-color: #475569;
+        }
+        .dark .dark\:text-gray-300 {
+            color: #cbd5e1;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="gradient-bg text-white py-6 shadow-lg">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-2xl md:text-3xl font-bold flex items-center">
+                        <i class="fas fa-magic mr-3"></i> Prompt Enhancer Pro
+                    </h1>
+                    <button id="theme-toggle" class="p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+                <p class="mt-2 opacity-90">Refine your AI prompts for better results and clarity</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Original Prompt Section -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold dark:text-white">
+                            <i class="fas fa-edit mr-2"></i> Original Prompt
+                        </h2>
+                        <button id="clear-btn" class="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 flex items-center">
+                            <i class="fas fa-trash-alt mr-1"></i> Clear
+                        </button>
+                    </div>
+                    <textarea id="original-prompt" class="w-full prompt-box p-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" placeholder="Enter your prompt here..."></textarea>
+                    
+                    <div class="mt-6">
+                        <h3 class="font-medium mb-2 dark:text-white">Enhancement Level</h3>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button class="enhancement-level-btn bg-blue-100 dark:bg-blue-900 dark:text-white py-2 px-3 rounded-lg text-sm transition-all" data-level="light">
+                                <i class="fas fa-feather mr-1"></i> Light
+                            </button>
+                            <button class="enhancement-level-btn active bg-blue-100 dark:bg-blue-900 dark:text-white py-2 px-3 rounded-lg text-sm transition-all" data-level="balanced">
+                                <i class="fas fa-balance-scale mr-1"></i> Balanced
+                            </button>
+                            <button class="enhancement-level-btn bg-blue-100 dark:bg-blue-900 dark:text-white py-2 px-3 rounded-lg text-sm transition-all" data-level="detailed">
+                                <i class="fas fa-search-plus mr-1"></i> Detailed
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h3 class="font-medium mb-2 dark:text-white">Enhancement Style</h3>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button class="enhancement-style-btn bg-purple-100 dark:bg-purple-900 dark:text-white py-2 px-3 rounded-lg text-sm transition-all" data-style="professional">
+                                <i class="fas fa-briefcase mr-1"></i> Professional
+                            </button>
+                            <button class="enhancement-style-btn active bg-purple-100 dark:bg-purple-900 dark:text-white py-2 px-3 rounded-lg text-sm transition-all" data-style="technical">
+                                <i class="fas fa-cogs mr-1"></i> Technical
+                            </button>
+                            <button class="enhancement-style-btn bg-purple-100 dark:bg-purple-900 dark:text-white py-2 px-3 rounded-lg text-sm transition-all" data-style="creative">
+                                <i class="fas fa-paint-brush mr-1"></i> Creative
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h3 class="font-medium mb-2 dark:text-white">Output Format</h3>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button class="enhancement-format-btn bg-green-100 dark:bg-green-900 dark:text-white py-2 px-3 rounded-lg text-sm transition-all" data-format="paragraph">
+                                <i class="fas fa-align-left mr-1"></i> Paragraph
+                            </button>
+                            <button class="enhancement-format-btn active bg-green-100 dark:bg-green-900 dark:text-white py-2 px-3 rounded-lg text-sm transition-all" data-format="structured">
+                                <i class="fas fa-indent mr-1"></i> Structured
+                            </button>
+                            <button class="enhancement-format-btn bg-green-100 dark:bg-green-900 dark:text-white py-2 px-3 rounded-lg text-sm transition-all" data-format="bullets">
+                                <i class="fas fa-list-ul mr-1"></i> Bullets
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button id="enhance-btn" class="w-full mt-6 gradient-bg text-white py-3 px-4 rounded-lg font-medium hover:opacity-90 transition flex items-center justify-center">
+                        <i class="fas fa-wand-magic-sparkles mr-2"></i> Enhance Prompt
+                    </button>
+                </div>
+                
+                <!-- Enhanced Prompt Section -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold dark:text-white">
+                            <i class="fas fa-star mr-2"></i> Enhanced Prompt
+                        </h2>
+                        <div class="flex space-x-2">
+                            <button id="regenerate-btn" class="text-sm bg-gray-200 dark:bg-gray-700 dark:text-white py-1 px-3 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 flex items-center">
+                                <i class="fas fa-sync-alt mr-1"></i> Regenerate
+                            </button>
+                            <button id="copy-btn" class="text-sm bg-gray-200 dark:bg-gray-700 dark:text-white py-1 px-3 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 flex items-center">
+                                <i class="fas fa-copy mr-1"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    <div id="enhanced-prompt" class="w-full prompt-box p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white min-h-[150px]">
+                        <p class="text-gray-500 dark:text-gray-400 italic">Your enhanced prompt will appear here...</p>
+                    </div>
+                    
+                    <div id="improvements-section" class="mt-6 hidden">
+                        <h3 class="font-medium mb-2 dark:text-white">
+                            <i class="fas fa-lightbulb mr-2"></i> Improvements Made
+                        </h3>
+                        <div id="improvements-list" class="bg-blue-50 dark:bg-blue-900 dark:text-blue-100 p-4 rounded-lg text-sm">
+                            <!-- Improvements will be listed here -->
+                        </div>
+                    </div>
+                    
+                    <div id="loading-spinner" class="mt-6 text-center hidden">
+                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500 dark:border-blue-300"></div>
+                        <p class="mt-2 text-gray-600 dark:text-gray-300">Enhancing your prompt...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-100 dark:bg-gray-800 py-6">
+            <div class="container mx-auto px-4 text-center text-gray-600 dark:text-gray-300">
+                <p>Prompt Enhancer Pro - Get better results from AI with optimized prompts</p>
+                <p class="mt-1 text-sm">© 2023 All Rights Reserved</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // DOM Elements
+        const originalPrompt = document.getElementById('original-prompt');
+        const enhancedPrompt = document.getElementById('enhanced-prompt');
+        const enhanceBtn = document.getElementById('enhance-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const regenerateBtn = document.getElementById('regenerate-btn');
+        const themeToggle = document.getElementById('theme-toggle');
+        const improvementsSection = document.getElementById('improvements-section');
+        const improvementsList = document.getElementById('improvements-list');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        
+        // Enhancement settings
+        let currentLevel = 'balanced';
+        let currentStyle = 'technical';
+        let currentFormat = 'structured';
+        
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+            
+            // Set up enhancement level buttons
+            document.querySelectorAll('.enhancement-level-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.enhancement-level-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentLevel = btn.dataset.level;
+                });
+            });
+            
+            // Set up enhancement style buttons
+            document.querySelectorAll('.enhancement-style-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.enhancement-style-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentStyle = btn.dataset.style;
+                });
+            });
+            
+            // Set up enhancement format buttons
+            document.querySelectorAll('.enhancement-format-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.enhancement-format-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFormat = btn.dataset.format;
+                });
+            });
+            
+            // Theme toggle
+            themeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            });
+            
+            // Clear button
+            clearBtn.addEventListener('click', () => {
+                originalPrompt.value = '';
+                enhancedPrompt.innerHTML = '<p class="text-gray-500 dark:text-gray-400 italic">Your enhanced prompt will appear here...</p>';
+                improvementsSection.classList.add('hidden');
+            });
+            
+            // Copy button
+            copyBtn.addEventListener('click', () => {
+                if (enhancedPrompt.textContent.trim() && !enhancedPrompt.querySelector('.italic')) {
+                    navigator.clipboard.writeText(enhancedPrompt.textContent);
+                    
+                    // Show copied feedback
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fas fa-check mr-1"></i> Copied!';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                    }, 2000);
+                }
+            });
+            
+            // Enhance button
+            enhanceBtn.addEventListener('click', enhancePrompt);
+            
+            // Regenerate button
+            regenerateBtn.addEventListener('click', enhancePrompt);
+        });
+        
+        // Function to enhance the prompt
+        function enhancePrompt() {
+            const promptText = originalPrompt.value.trim();
+            
+            if (!promptText) {
+                alert('Please enter a prompt to enhance');
+                return;
+            }
+            
+            // Show loading spinner
+            enhancedPrompt.classList.add('hidden');
+            improvementsSection.classList.add('hidden');
+            loadingSpinner.classList.remove('hidden');
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                // Generate enhanced prompt based on settings
+                const enhanced = generateEnhancedPrompt(promptText, currentLevel, currentStyle, currentFormat);
+                
+                // Display the enhanced prompt
+                enhancedPrompt.innerHTML = enhanced.formattedPrompt;
+                enhancedPrompt.classList.remove('hidden');
+                enhancedPrompt.classList.add('fade-in');
+                
+                // Display improvements
+                improvementsList.innerHTML = enhanced.improvements.map(imp => 
+                    `<p class="mb-2"><span class="font-medium">• ${imp.title}:</span> ${imp.description}</p>`
+                ).join('');
+                improvementsSection.classList.remove('hidden');
+                
+                // Hide loading spinner
+                loadingSpinner.classList.add('hidden');
+            }, 1500);
+        }
+        
+        // Function to generate enhanced prompt (simulated)
+        function generateEnhancedPrompt(prompt, level, style, format) {
+            // These would normally come from an API, but we'll simulate them
+            const improvements = [
+                {
+                    title: "Added Context",
+                    description: "Included relevant background information to help the AI better understand the request."
+                },
+                {
+                    title: "Increased Specificity",
+                    description: "Added concrete details and examples to make the prompt more precise."
+                },
+                {
+                    title: "Improved Structure",
+                    description: "Organized the prompt logically to make it easier for the AI to parse."
+                }
+            ];
+            
+            // Base enhanced prompt
+            let basePrompt = `I need a ${style} response to the following request: "${prompt}". `;
+            
+            // Add level-based enhancements
+            if (level === 'light') {
+                basePrompt += "Please provide a concise answer focusing on the key points.";
+            } else if (level === 'balanced') {
+                basePrompt += "Please provide a thorough response that covers all important aspects, including relevant examples where appropriate.";
+            } else if (level === 'detailed') {
+                basePrompt += "Please provide an extremely detailed response, breaking down each component of the request. Include multiple examples, potential variations, and any relevant background information that would help in understanding the topic deeply.";
+            }
+            
+            // Add style-based enhancements
+            if (style === 'professional') {
+                basePrompt += " The tone should be formal and business-appropriate, suitable for a professional setting.";
+            } else if (style === 'technical') {
+                basePrompt += " Use precise terminology and include any relevant technical details. Assume the reader has some background knowledge in the subject.";
+            } else if (style === 'creative') {
+                basePrompt += " Feel free to use imaginative language and unconventional approaches. The response can be playful and innovative.";
+            }
+            
+            // Format the output
+            let formattedPrompt = basePrompt;
+            
+            if (format === 'structured') {
+                formattedPrompt = `Request: ${prompt}\n\nResponse Requirements:\n` +
+                                  `- Style: ${style}\n` +
+                                  `- Detail Level: ${level}\n` +
+                                  `- Format: Structured response with clear sections\n\n` +
+                                  `Additional Instructions: ${basePrompt.split('Please provide')[1]}`;
+            } else if (format === 'bullets') {
+                formattedPrompt = `• Original Request: "${prompt}"\n` +
+                                  `• Response Style: ${style}\n` +
+                                  `• Detail Level: ${level}\n` +
+                                  `• Key Requirements:\n` +
+                                  `  - ${basePrompt.split('. Please provide')[1].replace('.', '').trim()}\n` +
+                                  `  - ${improvements[0].description}\n` +
+                                  `  - ${improvements[1].description}`;
+            }
+            
+            return {
+                formattedPrompt: `<p class="whitespace-pre-wrap">${formattedPrompt}</p>`,
+                improvements: improvements
+            };
+        }
+    </script>
+</body>
+</html>
